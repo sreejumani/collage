@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <style>
+        .edit-mode {
+            background-color: lightblue; 
+        }
+        
+    </style>
+</head>
+<body>
+    <table border="1" style="border-collapse: collapse ; width: 100%;" >
+        <thead style="background-color: black;">
+            <tr>
+                <th style="color: white;">Roll No</th>
+                <th style="color: white;">Name</th>
+                <th style="color: white;">Marks</th>
+                <th style="color: white;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- *ngFor is used here to loop over the students array -->
+            <tr *ngFor="let student of students; let i = index" [ngClass]="{'edit-mode': editingIndex === i}">
+                
+                <!-- Roll No column -->
+                <td >
+                    <ng-container *ngIf="editingIndex === i; else viewModeRollNo">
+                        <input [(ngModel)]="student.rollno" name="rollno" />
+                    </ng-container>
+                    <ng-template #viewModeRollNo>
+                        <span>{{ student.rollno }}</span>
+                    </ng-template>
+                </td>
+                
+                <!-- Name column -->
+                <td>
+                    <ng-container *ngIf="editingIndex === i; else viewModeName">
+                        <input [(ngModel)]="student.name" name="name" />
+                    </ng-container>
+                    <ng-template #viewModeName>
+                        <span>{{ student.name }}</span>
+                    </ng-template>
+                </td>
+                
+                <!-- Marks column -->
+                <td>
+                    <ng-container *ngIf="editingIndex === i; else viewModeMarks">
+                        <input type="number" [(ngModel)]="student.marks" name="marks" />
+                    </ng-container>
+                    <ng-template #viewModeMarks>
+                        <span>{{ student.marks }}</span>
+                    </ng-template>
+                </td>
+                
+                <!-- Actions column -->
+                <td>
+                    <!-- Show Edit button if not in edit mode -->
+                    <button *ngIf="editingIndex !== i" type="button" (click)="editStudent(student, i)">Edit</button>
+                    <!-- Show Submit button if in edit mode -->
+                    <button *ngIf="editingIndex === i" type="button" (click)="submitChanges()">Submit</button>
+                </td>
+                
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

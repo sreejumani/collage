@@ -1,8 +1,12 @@
 <<<<<<< HEAD
 # Subject
-open terminal=install npm
-add angular project name=ng new subject --no-standalone
-start to run the project using=ng test
+open terminal=install npm,
+
+#add
+add angular project name=ng new subject --no-standalone,
+
+#run
+start to run the project using=ng test.
 
 ## Development server
 

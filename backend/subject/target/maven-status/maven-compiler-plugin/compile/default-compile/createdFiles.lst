@@ -1,0 +1,4 @@
+com/subject/repository/SubjectRepository.class
+com/subject/controller/SubjectController.class
+com/subject/SubjectApplication.class
+com/subject/entity/Subject.class
